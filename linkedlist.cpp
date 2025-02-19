@@ -20,6 +20,20 @@ void printlist(Node* head)
     cout << "NULL" << endl;
 }
 
+void insertAtEnd(Node *head, int value)
+{
+    Node* p = head;
+    Node *temp = new Node();
+    while( p->next != NULL)
+    {
+        p = p->next;
+    }
+    temp->value = value;
+    temp->next = NULL;
+    p->next = temp;
+    
+}
+
 int main()
 {
     Node *head = new Node();
@@ -35,6 +49,12 @@ int main()
     third->value = 33;
     third->next = NULL;
 
+    printlist(head);
+
+    insertAtEnd(head,44);
+    printlist(head);
+
+    insertAtEnd(head,55);
     printlist(head);
     
     return 0;
