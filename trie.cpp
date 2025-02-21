@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string.h>
 
 using namespace std;
 
@@ -20,6 +21,35 @@ trienode *createnode()
     newnode->terminal = false;
 
     return newnode;
+
+}
+
+bool inserttrie(trienode **root, char *signedtext)
+{
+    if(*root == nullptr)
+    {
+        *root = createnode();
+    }
+
+    unsigned char *text = (unsigned char*)signedtext;
+
+    trienode *tmp = *root;
+    int length = strlen(signedtext);
+
+    for(int i=0; i < length; i++)
+    {
+        if(tmp->children[text[i]] == nullptr){
+            tmp->children[text[i]] = createnode();
+        }
+        tmp = tmp->children[text[i]];
+    }
+    if(tmp->terminal)
+    {
+        return false;
+    }
+    else{
+        return true;
+    }
 
 }
 
