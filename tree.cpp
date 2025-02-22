@@ -2,49 +2,40 @@
 
 using namespace std;
 
-struct Node{
+
+class TreeNode{
+public:
     int data;
-    Node *left;
-    Node *right;
+    TreeNode* left;
+    TreeNode* right;
 };
 
-Node* createNode(int data)
-{
-    Node* newNode = new Node();
-    newNode->data = data;
-    newNode->left = nullptr;
-    newNode->right = nullptr;
-    return newNode;
-
-}
-
-void print_dfs(Node *root)
+void print_df(TreeNode* root)
 {
     if(root == nullptr)
     {
-        cout << "<Empty>" << endl;
-        return;
+        cout << "====================<Empty>===================" << endl;
     }
-    
-    cout << "Value " << root->data << endl;
+    cout << "Value: " << root->data << endl;
     cout << "Left of " << root->data << endl;
-    print_dfs(root->left);
+    print_df(root->left);
     cout << "Right of " << root->data << endl;
-    print_dfs(root->right);
+    print_df(root->right);
+
+}
+
+TreeNode* createnode(int value)
+{
+    TreeNode* newnode = new TreeNode();
+    newnode->data = value;
+    newnode->left = nullptr;
+    newnode->right = nullptr;
+    return newnode;
 }
 
 int main()
 {
-    Node* root = createNode(1);
-    Node *n1 = createNode(2);
-    Node *n2 = createNode(3);
-    Node *n3 = createNode(4);
-
-    root->left = n1;
-    root->right = n2;
-    n1->left = n3;
-
-    print_dfs(root);
+    
 
     return 0;
 }
